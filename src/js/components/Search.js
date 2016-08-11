@@ -14,7 +14,7 @@ export default class Search extends React.Component {
 		});
 	}
 
-	findPlace(e) {
+	findPlaces(e) {
 		if (e.keyCode==13) {
 			e.preventDefault();
 			
@@ -34,7 +34,7 @@ export default class Search extends React.Component {
 			<div id="search">
 				<label>Find:&nbsp;</label>
 				<input type="text" onChange={this.getQuery.bind(this)} value={query} 
-				onKeyDown={this.findPlace.bind(this)} />
+				onKeyDown={this.findPlaces.bind(this)} />
 			</div>
 		)
 	}
