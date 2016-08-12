@@ -1,5 +1,7 @@
 import React from 'react';
 
+import * as SearchActions from '../actions/SearchActions';
+
 export default class Search extends React.Component {
 	constructor() {
 		super();
@@ -19,7 +21,7 @@ export default class Search extends React.Component {
 			e.preventDefault();
 			
 			const { query }=this.state;
-			console.log(query);
+			SearchActions.findPlaces(query);
 
 			this.setState({
 				query: ''
