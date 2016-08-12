@@ -15,6 +15,7 @@ export default class Map extends React.Component {
 
 	componentWillMount() {
 		SearchStore.on('find', (query) => {
+			this.loadMap();
 			this.findPlaces(query);
 		});
 	}
