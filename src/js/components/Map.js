@@ -23,8 +23,8 @@ export default class Map extends React.Component {
 		this.loadMap();
 	}
 
-	displayPhoto(url) {
-		return '<img src="'+url+'" />';
+	displayPhoto(url, name) {
+		return '<img src="'+url+'" /><div><b>'+name+'</b></div>';
 	}
 
 	findPlaces(query) {
@@ -47,7 +47,7 @@ export default class Map extends React.Component {
 					});
 
 					google.maps.event.addListener(marker, 'click', () => {
-						let content=this.displayPhoto(url);
+						let content=this.displayPhoto(url, place.name);
 						infoWindow.setContent(content);
 						infoWindow.open(this.map, marker);
 					});
