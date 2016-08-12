@@ -23,6 +23,10 @@ export default class Map extends React.Component {
 		this.loadMap();
 	}
 
+	displayPhoto(url) {
+		return '<img src="'+url+'" />';
+	}
+
 	findPlaces(query) {
 		let infoWindow=new google.maps.InfoWindow();
 		let service=new google.maps.places.PlacesService(this.map);
@@ -34,13 +38,15 @@ export default class Map extends React.Component {
 			if (status===google.maps.places.PlacesServiceStatus.OK) {
 				for (let i=0;i<results.length;i++) {
 					let place=results[i];
+					let photo=place.photos[0];
+
 					let marker=new google.maps.Marker({
 						map: this.map,
-						position: place.geometry.location
+						position: place.geometry.location,
 					});
 
 					google.maps.event.addListener(marker, 'click', () => {
-						infoWindow.setContent(place.name);
+						infoWindow.setContent(this.displayPhoto(photo.getUrl({ 'maxWidth': 200, 'maxHeight': 200 })));
 						infoWindow.open(this.map, marker);
 					});
 				}
