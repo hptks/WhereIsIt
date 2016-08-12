@@ -39,6 +39,7 @@ export default class Map extends React.Component {
 				for (let i=0;i<results.length;i++) {
 					let place=results[i];
 					let photo=place.photos[0];
+					let url=photo.getUrl({ 'maxWidth': 200, 'maxHeight': 200 });
 
 					let marker=new google.maps.Marker({
 						map: this.map,
@@ -46,7 +47,8 @@ export default class Map extends React.Component {
 					});
 
 					google.maps.event.addListener(marker, 'click', () => {
-						infoWindow.setContent(this.displayPhoto(photo.getUrl({ 'maxWidth': 200, 'maxHeight': 200 })));
+						let content=this.displayPhoto(url);
+						infoWindow.setContent(content);
 						infoWindow.open(this.map, marker);
 					});
 				}
