@@ -39,9 +39,9 @@ export default class Map extends React.Component {
 		}
 	}
 
-	displayPhoto(url, name) {
+	displayInfo(url, name, rating) {
 		return '<img src="'+url+'" /><div><b>'+name+'</b></div>'+
-			   '<div></div>';
+			   '<div>Rating:&nbsp'+rating+'/5.0</div>';
 	}
 
 	findPlaces(query) {
@@ -64,7 +64,7 @@ export default class Map extends React.Component {
 					});
 
 					marker.addListener('click', () => {
-						let content=this.displayPhoto(url, place.name)+this.openingHours(place.opening_hours.open_now, place.opening_hours.periods);
+						let content=this.displayInfo(url, place.name, place.rating)+this.openingHours(place.opening_hours.open_now, place.opening_hours.periods);
 						infoWindow.setContent(content);
 						infoWindow.open(this.map, marker);
 					});
