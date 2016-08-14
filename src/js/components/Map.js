@@ -27,9 +27,9 @@ export default class Map extends React.Component {
 
 	openingHours(openNow, periods) {
 		if (openNow) {
-			return '<div id="ok">Open now</div>';
+			return '<div id="ok"><b>Open now</b></div>';
 		} else {
-			let s='<div id="no">Closed now</div>';
+			let s='<div id="no"><b>Closed now</b></div>';
 			for (let i=0;i<peirods.length;i++) {
 				let open=periods[i].open;
 				s+='<div>'+this.days[open.day]+'&nbsp;'+open.time+'</div>';

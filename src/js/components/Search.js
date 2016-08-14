@@ -21,7 +21,7 @@ export default class Search extends React.Component {
 			e.preventDefault();
 			
 			const { query }=this.state;
-			SearchActions.findPlaces('store');
+			SearchActions.findPlaces(query);
 
 			this.setState({
 				query: ''
