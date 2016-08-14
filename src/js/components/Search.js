@@ -34,9 +34,11 @@ export default class Search extends React.Component {
 
 		return (
 			<div id="search">
-				<label>Find:&nbsp;</label>
-				<input type="text" onChange={this.getQuery.bind(this)} value={query} 
-				onKeyDown={this.findPlaces.bind(this)} />
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">Find</span>
+					<input type="text" onChange={this.getQuery.bind(this)} value={query} 
+					onKeyDown={this.findPlaces.bind(this)} class="form-control" aria-describedby="basic-addon1" />
+				</div>
 			</div>
 		)
 	}
