@@ -7,6 +7,7 @@ export default class Map extends React.Component {
 		super();
 		this.map=null;
 		this.lat_lng=null;
+		this.days=['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	}
 
 	componentDidMount() {
@@ -24,8 +25,23 @@ export default class Map extends React.Component {
 		this.loadMap();
 	}
 
+	openingHours(openNow, periods) {
+		if (openNow) {
+			return '<div id="ok">Open now</div>';
+		} else {
+			let s='<div id="no">Closed now</div>';
+			for (let i=0;i<peirods.length;i++) {
+				let open=periods[i].open;
+				s+='<div>'+this.days[open.day]+'&nbsp;'+open.time+'</div>';
+			}
+
+			return s;
+		}
+	}
+
 	displayPhoto(url, name) {
-		return '<img src="'+url+'" /><div><b>'+name+'</b></div>';
+		return '<img src="'+url+'" /><div><b>'+name+'</b></div>'+
+			   '<div></div>';
 	}
 
 	findPlaces(query) {
@@ -47,8 +63,8 @@ export default class Map extends React.Component {
 						position: place.geometry.location,
 					});
 
-					google.maps.event.addListener(marker, 'click', () => {
-						let content=this.displayPhoto(url, place.name);
+					marker.addListener('click', () => {
+						let content=this.displayPhoto(url, place.name)+this.openingHours(place.opening_hours.open_now, place.opening_hours.periods);
 						infoWindow.setContent(content);
 						infoWindow.open(this.map, marker);
 					});

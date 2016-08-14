@@ -6,3 +6,11 @@
 #search {
 	margin-top: 5px;
 }
+
+#ok {
+	color: green;
+}
+
+#no {
+	color: red;
+}
