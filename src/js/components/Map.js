@@ -30,9 +30,11 @@ export default class Map extends React.Component {
 			return '<div id="ok"><b>Open now</b></div>';
 		} else {
 			let s='<div id="no"><b>Closed now</b></div>';
-			for (let i=0;i<peirods.length;i++) {
-				let open=periods[i].open;
-				s+='<div>'+this.days[open.day]+'&nbsp;'+open.time+'</div>';
+			if (typeof periods!=='undefined') {
+				for (let i=0;i<peirods.length;i++) {
+					let open=periods[i].open;
+					s+='<div>'+this.days[open.day]+'&nbsp;'+open.time+'</div>';
+				}
 			}
 
 			return s;
