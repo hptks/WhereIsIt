@@ -15,9 +15,9 @@ export default class Map extends React.Component {
 	}
 
 	componentWillMount() {
-		SearchStore.on('find', (query) => {
+		SearchStore.on('find', (distance, query) => {
 			this.loadMap();
-			this.findPlaces(query);
+			this.findPlaces(distance, query);
 		});
 	}
 
@@ -46,12 +46,12 @@ export default class Map extends React.Component {
 			   '<div>Rating:&nbsp'+rating+'/5.0</div>';
 	}
 
-	findPlaces(query) {
+	findPlaces(distance, query) {
 		let infoWindow=new google.maps.InfoWindow();
 		let service=new google.maps.places.PlacesService(this.map);
 		service.nearbySearch({
 			location: this.lat_lng,
-			radius: 300,
+			radius: distance,
 			type: [query]
 		}, (results, status) => {
 			if (status===google.maps.places.PlacesServiceStatus.OK) {

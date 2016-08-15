@@ -7,14 +7,14 @@ class SearchStore extends EventEmitter {
 		super();
 	}
 
-	findPlaces(query) {
-		this.emit('find', query);
+	findPlaces(distance, query) {
+		this.emit('find', distance, query);
 	}
 
 	handleAction(action) {
 		switch(action.type) {
 			case 'FIND_PLACES': {
-				this.findPlaces(action.query);
+				this.findPlaces(action.distance, action.query);
 				break;
 			}
 		}
